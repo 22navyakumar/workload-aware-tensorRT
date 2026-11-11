@@ -1,0 +1,10 @@
+# Shared across all experiments — change here, not per experiment.
+model: distilbert-base-uncased   # placeholder; pick one small pretrained Transformer and keep it fixed
+precision: fp16
+batch_sizes: [1, 4, 8, 16]
+seq_lens: [128, 256, 512, 1024]  # drop shapes that exceed GPU memory
+warmup_iters: 20
+timed_iters: 100
+# Torch-TensorRT settings swept in E1/E2
+compiler_settings:
+  min_block_size: [1, 3, 5, 10, 20]

@@ -1,0 +1,8 @@
+torch
+torch-tensorrt
+transformers
+numpy
+pandas
+matplotlib
+scikit-learn
+pyyaml
