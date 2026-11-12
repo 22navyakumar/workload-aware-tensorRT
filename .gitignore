@@ -9,3 +9,10 @@ __pycache__/
 *.sqlite
 results/traces/
 slurm-*.out
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
