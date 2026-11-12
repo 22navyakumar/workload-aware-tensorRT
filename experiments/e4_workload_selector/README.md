@@ -6,6 +6,8 @@
 
 Use the shared harness (`harness/`) and `configs/workloads.yaml`. Write outputs to `results/e4_workload_selector/`.
 
+**Result:** [`results/e4_workload_selector/README.md`](../../results/e4_workload_selector/README.md). One fixed tuned config matches the best tested config on held-out shapes; a per-workload selector adds nothing for DistilBERT on the A100.
+
 ## How to run
 
 Plan and background: [`PLAN.md`](PLAN.md). What has been run so far and what it showed: [`LOG.md`](LOG.md).

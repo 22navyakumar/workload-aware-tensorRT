@@ -3,13 +3,12 @@
 What was run, what it showed, and what changed because of it. Times are UTC. Newest entry last.
 Hardware and software versions: [`configs/environment.md`](../../configs/environment.md).
 
-## Status (2026-11-12 14:15)
+## Status (2026-11-12 17:00)
 
 - Partition check: done. Results in `results/e4_workload_selector/partition_check.json`.
-- Sweep v1 (short warm-up): 83 of 340 runs, then cancelled by the cluster. Timings are flawed (see below). Kept as `results/sweep/sweep_v1_short_warmup.csv` for reference only.
-- Sweep v2 (2 s warm-up, 5 repeats): running. Job 29729 started at 14:02 on node b-19-51 and had 26 of 340 runs at 14:12. Seven more jobs are chained behind it (29730 to 29732, 29750 to 29753).
-- The warm-up fix is confirmed on the first 15 runs: the five repeats agree within 1% for the GPU-bound configs.
-- Selector evaluation and figures: code works on synthetic data and on the v1 partial data. No reportable numbers yet.
+- Sweep v2: done. 340 of 340 runs in one job (29729), 320 succeeded, 20 failed (`ln_global`). Data in `results/sweep/sweep.csv`.
+- Selector evaluation and figures: done. Write-up in [`results/e4_workload_selector/README.md`](../../results/e4_workload_selector/README.md).
+- Sweep v1 (short warm-up) is kept as `results/sweep/sweep_v1_short_warmup.csv` for reference only; its timings are flawed.
 
 ## 2026-11-12
 
@@ -106,8 +105,23 @@ First 15 v2 runs (batch 1 × 128 tokens), five repeats each:
 
 The 20% jumps between repeats are gone, and the values match the faster of the two levels seen in v1 (0.588 ms for `trt_default`). Median spread over the 15 runs is 1.7%; the largest is 5.8% (`gelu_mbs22`, which runs mostly in PyTorch).
 
+- 14:44: job 29729 passed the 30-minute utilization check. With the warm-up, GPU use is above the 5% threshold, so the job ran to the end without being cancelled.
+- 16:33: 340 of 340 runs after 2 h 31 min. All on node b-19-51. The seven queued chain jobs were cancelled unused.
+
+Checks on the finished file:
+
+- 1,600 successful rows: 320 runs × 5 repeats. 20 error rows, all `ln_global`.
+- Spread across the five repeats: median 0.7%, 90th percentile 2.4%, largest 5.8%.
+- `trt_default` against `trt_default_rebuild` (same config built twice): median gap 0.3%.
+- Cosine similarity against eager at least 0.99999; largest absolute difference 0.02.
+- Total engine build time 7,220 s of the 9,090 s job.
+
+### Evaluation
+
+`evaluate.py` on `results/sweep/sweep.csv`. Headline: one fixed tuned config (the CUDA Graphs variant) is within 0.5% of the best tested config on the held-out shapes in all three scenarios, and the lookup and regression selectors are between 0.97× and 1.01× of it. Full tables and caveats are in `results/e4_workload_selector/README.md`.
+
 ## Open items
 
-- Whether the v2 jobs stay above the 5% utilization threshold. If not, the chain covers it.
 - Team decision: DistilBERT's position limit is 512 tokens, so the 768 and 1024-token shapes in the proposal cannot run with this model. They are dropped by the sweep.
 - The other experiments use `harness/bench.py` directly. On this cluster its 20-iteration warm-up reads about 20% high for sub-millisecond engines.
+- The selector result is for one model on one GPU. A model with operators TensorRT cannot convert is the case where per-workload selection could still matter; it has not been tested.
