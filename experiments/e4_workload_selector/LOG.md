@@ -3,11 +3,12 @@
 What was run, what it showed, and what changed because of it. Times are UTC. Newest entry last.
 Hardware and software versions: [`configs/environment.md`](../../configs/environment.md).
 
-## Status (2026-11-12 13:00)
+## Status (2026-11-12 14:15)
 
 - Partition check: done. Results in `results/e4_workload_selector/partition_check.json`.
 - Sweep v1 (short warm-up): 83 of 340 runs, then cancelled by the cluster. Timings are flawed (see below). Kept as `results/sweep/sweep_v1_short_warmup.csv` for reference only.
-- Sweep v2 (2 s warm-up, 5 repeats): submitted as six chained jobs, 29727 to 29732. Waiting for an A100 node; two node boots have failed so far. No rows yet.
+- Sweep v2 (2 s warm-up, 5 repeats): running. Job 29729 started at 14:02 on node b-19-51 and had 26 of 340 runs at 14:12. Seven more jobs are chained behind it (29730 to 29732, 29750 to 29753).
+- The warm-up fix is confirmed on the first 15 runs: the five repeats agree within 1% for the GPU-bound configs.
 - Selector evaluation and figures: code works on synthetic data and on the v1 partial data. No reportable numbers yet.
 
 ## 2026-11-12
@@ -85,11 +86,28 @@ Submitted 12:32 as `sbatch --requeue slurm/sweep.sbatch`, then five more with `-
 
 - 12:33 to 12:40: node b-19-30 failed to boot. Requeued.
 - 12:42 to 12:50: node b-19-64 failed to boot. Requeued.
-- 12:54: pending (`Resources`). The partition shows 13 nodes draining.
+- 12:54 to 13:50: jobs 29727 and 29728 each waited 13 minutes on a node that never booted (b-19-43, b-19-63) and were cancelled by Slurm. Neither wrote a log.
+- 14:02: job 29729 started on b-19-51. First v2 rows.
+- 14:12: four more jobs (29750 to 29753) added to the end of the chain to make up for the two lost ones.
+
+First 15 v2 runs (batch 1 × 128 tokens), five repeats each:
+
+| Config | Median latency (ms) | Spread across repeats |
+|---|---|---|
+| `eager` | 3.87 | 1.8% |
+| `trt_default` | 0.588 | 0.9% |
+| `trt_default_rebuild` | 0.595 | 0.2% |
+| `trt_opt1` | 0.637 | 0.5% |
+| `trt_opt5` | 0.592 | 0.7% |
+| `trt_cudagraphs` | 0.493 | 0.4% |
+| `gelu_mbs5` | 1.83 | 1.7% |
+| `gelu_cudagraphs` | 0.559 | 0.4% |
+| `ln_mbs5` | 3.03 | 2.1% |
+
+The 20% jumps between repeats are gone, and the values match the faster of the two levels seen in v1 (0.588 ms for `trt_default`). Median spread over the 15 runs is 1.7%; the largest is 5.8% (`gelu_mbs22`, which runs mostly in PyTorch).
 
 ## Open items
 
-- Whether 2 s of warm-up removes the bimodal timings. Check the spread across the five repeats in the first v2 rows.
 - Whether the v2 jobs stay above the 5% utilization threshold. If not, the chain covers it.
 - Team decision: DistilBERT's position limit is 512 tokens, so the 768 and 1024-token shapes in the proposal cannot run with this model. They are dropped by the sweep.
 - The other experiments use `harness/bench.py` directly. On this cluster its 20-iteration warm-up reads about 20% high for sub-millisecond engines.
