@@ -1,0 +1,1355 @@
+{
+  "environment": {
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "gpu_mem_gb": 39.5,
+    "cuda": "13.0",
+    "torch": "2.14.1+cu130",
+    "torch_tensorrt": "2.14.0",
+    "tensorrt": "11.1.0.106",
+    "transformers": "5.22.2"
+  },
+  "model": "distilbert-base-uncased",
+  "max_position_embeddings": 512,
+  "configs": {
+    "trt_default": {
+      "n_trt_blocks": 1,
+      "n_torch_blocks": 0,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 127,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 13,
+            "aten.native_layer_norm.default": 13,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 36,
+            "aten._reshape_copy.default": 24,
+            "aten.permute.default": 24,
+            "aten.scaled_dot_product_attention.default": 6,
+            "aten.gelu.default": 6
+          }
+        }
+      ]
+    },
+    "trt_opt1": {
+      "n_trt_blocks": 1,
+      "n_torch_blocks": 0,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 127,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 13,
+            "aten.native_layer_norm.default": 13,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 36,
+            "aten._reshape_copy.default": 24,
+            "aten.permute.default": 24,
+            "aten.scaled_dot_product_attention.default": 6,
+            "aten.gelu.default": 6
+          }
+        }
+      ]
+    },
+    "trt_opt5": {
+      "n_trt_blocks": 1,
+      "n_torch_blocks": 0,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 127,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 13,
+            "aten.native_layer_norm.default": 13,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 36,
+            "aten._reshape_copy.default": 24,
+            "aten.permute.default": 24,
+            "aten.scaled_dot_product_attention.default": 6,
+            "aten.gelu.default": 6
+          }
+        }
+      ]
+    },
+    "trt_default_rebuild": {
+      "n_trt_blocks": 1,
+      "n_torch_blocks": 0,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 127,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 13,
+            "aten.native_layer_norm.default": 13,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 36,
+            "aten._reshape_copy.default": 24,
+            "aten.permute.default": 24,
+            "aten.scaled_dot_product_attention.default": 6,
+            "aten.gelu.default": 6
+          }
+        }
+      ]
+    },
+    "gelu_mbs5": {
+      "n_trt_blocks": 6,
+      "n_torch_blocks": 6,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 23,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 5,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_1",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_3",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_5",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_6",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_7",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_8",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_9",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_10",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_11",
+          "kind": "torch",
+          "n_ops": 4,
+          "ops": {
+            "aten.gelu.default": 1,
+            "aten.linear.default": 1,
+            "aten.add.Tensor": 1,
+            "aten.native_layer_norm.default": 1
+          }
+        }
+      ]
+    },
+    "gelu_mbs1": {
+      "n_trt_blocks": 7,
+      "n_torch_blocks": 6,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 23,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 5,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_1",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_3",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_5",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_6",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_7",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_8",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_9",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_10",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_11",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_12",
+          "kind": "trt",
+          "n_ops": 3,
+          "ops": {
+            "aten.linear.default": 1,
+            "aten.add.Tensor": 1,
+            "aten.native_layer_norm.default": 1
+          }
+        }
+      ]
+    },
+    "gelu_mbs22": {
+      "n_trt_blocks": 1,
+      "n_torch_blocks": 1,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 23,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 5,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_1",
+          "kind": "torch",
+          "n_ops": 104,
+          "ops": {
+            "aten.gelu.default": 6,
+            "aten.linear.default": 31,
+            "aten.add.Tensor": 11,
+            "aten.native_layer_norm.default": 11,
+            "aten._reshape_copy.default": 20,
+            "aten.permute.default": 20,
+            "aten.scaled_dot_product_attention.default": 5
+          }
+        }
+      ]
+    },
+    "gelu_global": {
+      "n_trt_blocks": 6,
+      "n_torch_blocks": 6,
+      "blocks": [
+        {
+          "name": "_run_on_acc_5",
+          "kind": "trt",
+          "n_ops": 23,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 5,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_1",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_3",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_3",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_5",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_7",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_1",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_9",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.gelu.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 19,
+          "ops": {
+            "aten.linear.default": 6,
+            "aten.add.Tensor": 2,
+            "aten.native_layer_norm.default": 2,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1
+          }
+        },
+        {
+          "name": "inline_11",
+          "kind": "torch",
+          "n_ops": 4,
+          "ops": {
+            "aten.gelu.default": 1,
+            "aten.linear.default": 1,
+            "aten.add.Tensor": 1,
+            "aten.native_layer_norm.default": 1
+          }
+        }
+      ]
+    },
+    "ln_mbs5": {
+      "n_trt_blocks": 7,
+      "n_torch_blocks": 7,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 6,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 1,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_1",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_3",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_5",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_6",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_7",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_8",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_9",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_10",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_11",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_12",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_13",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        }
+      ]
+    },
+    "ln_mbs1": {
+      "n_trt_blocks": 13,
+      "n_torch_blocks": 13,
+      "blocks": [
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 6,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 1,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_1",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_3",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_5",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_6",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_7",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_8",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_9",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_10",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_11",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_12",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_13",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_14",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_15",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_16",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_17",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_18",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_19",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_20",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_21",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_22",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_23",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_24",
+          "kind": "trt",
+          "n_ops": 4,
+          "ops": {
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_25",
+          "kind": "torch",
+          "n_ops": 1,
+          "ops": {
+            "aten.native_layer_norm.default": 1
+          }
+        }
+      ]
+    },
+    "ln_mbs10": {
+      "n_trt_blocks": 6,
+      "n_torch_blocks": 7,
+      "blocks": [
+        {
+          "name": "_run_on_gpu_0",
+          "kind": "torch",
+          "n_ops": 7,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 1,
+            "aten.native_layer_norm.default": 1,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_1",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_2",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_3",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_4",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_5",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_6",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_7",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_8",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_9",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_10",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_11",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_gpu_12",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        }
+      ]
+    },
+    "ln_mbs20": {
+      "n_trt_blocks": 0,
+      "n_torch_blocks": 1,
+      "blocks": [
+        {
+          "name": "_run_on_gpu_0",
+          "kind": "torch",
+          "n_ops": 127,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 13,
+            "aten.native_layer_norm.default": 13,
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 36,
+            "aten._reshape_copy.default": 24,
+            "aten.permute.default": 24,
+            "aten.scaled_dot_product_attention.default": 6,
+            "aten.gelu.default": 6
+          }
+        }
+      ]
+    },
+    "ln_global": {
+      "n_trt_blocks": 6,
+      "n_torch_blocks": 7,
+      "blocks": [
+        {
+          "name": "inline_0",
+          "kind": "torch",
+          "n_ops": 3,
+          "ops": {
+            "aten.embedding.default": 1,
+            "aten.add.Tensor": 1,
+            "aten.native_layer_norm.default": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_5",
+          "kind": "trt",
+          "n_ops": 18,
+          "ops": {
+            "aten._to_copy.default": 1,
+            "aten.index.Tensor": 1,
+            "aten.bitwise_and.Tensor": 1,
+            "aten.expand.default": 1,
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_2",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_4",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_4",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_3",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_6",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_2",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_8",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_1",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_10",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "_run_on_acc_0",
+          "kind": "trt",
+          "n_ops": 14,
+          "ops": {
+            "aten.linear.default": 4,
+            "aten._reshape_copy.default": 4,
+            "aten.permute.default": 4,
+            "aten.scaled_dot_product_attention.default": 1,
+            "aten.add.Tensor": 1
+          }
+        },
+        {
+          "name": "inline_12",
+          "kind": "torch",
+          "n_ops": 6,
+          "ops": {
+            "aten.native_layer_norm.default": 2,
+            "aten.linear.default": 2,
+            "aten.gelu.default": 1,
+            "aten.add.Tensor": 1
+          }
+        }
+      ]
+    }
+  },
+  "lowered_ops": {
+    "aten.linear.default": 36,
+    "aten._reshape_copy.default": 24,
+    "aten.permute.default": 24,
+    "aten.add.Tensor": 13,
+    "aten.native_layer_norm.default": 13,
+    "aten.scaled_dot_product_attention.default": 6,
+    "aten.gelu.default": 6,
+    "aten.embedding.default": 1,
+    "aten._to_copy.default": 1,
+    "aten.index.Tensor": 1,
+    "aten.bitwise_and.Tensor": 1,
+    "aten.expand.default": 1
+  }
+}
