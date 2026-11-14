@@ -8,3 +8,11 @@ __pycache__/
 *.qdrep
 *.sqlite
 results/traces/
+slurm-*.out
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
